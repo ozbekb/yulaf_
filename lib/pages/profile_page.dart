@@ -70,10 +70,10 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.lime[300],
-        appBar: AppBar(
+        /*appBar: AppBar(
           title: Text("Profile Page"),
           backgroundColor: Color.fromARGB(255, 197, 0, 251),
-        ),
+        ),*/
         body: StreamBuilder<DocumentSnapshot>(
           stream: FirebaseFirestore.instance
               .collection("Users")
