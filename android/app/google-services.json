@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "111451235080",
+    "firebase_url": "https://yulaf-app-default-rtdb.firebaseio.com",
+    "project_id": "yulaf-app",
+    "storage_bucket": "yulaf-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:111451235080:android:1b4737202fc2b612eb82bd",
+        "android_client_info": {
+          "package_name": "com.example.social_wall"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA8fWCwlMmCEWdwRY_J39Oe2XIc38g8Uxc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:111451235080:android:0b7724b0fcd3cd1aeb82bd",
+        "android_client_info": {
+          "package_name": "com.example.yulaf_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA8fWCwlMmCEWdwRY_J39Oe2XIc38g8Uxc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
