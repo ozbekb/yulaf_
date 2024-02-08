@@ -25,7 +25,7 @@ class Home extends StatelessWidget {
         homePageCard(
             titleStyle: titleStyle,
             title: "KALORİ",
-            route: "",
+            route: "cat",
             gradient1: const Color.fromARGB(255, 214, 40, 72),
             gradient2: const Color.fromARGB(255, 247, 162, 113),
             iconData: Icons.dining_outlined),

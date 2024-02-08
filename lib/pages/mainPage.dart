@@ -6,6 +6,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 //import 'package:yulaf_app/home/userScreen.dart';
 //import 'package:yulaf_app/models/user.dart';
 //import "feed.dart";
+import '/screens/category_screen.dart';
+
 import 'home_page.dart';
 import 'home.dart';
 import 'package:social_wall/components/drawer.dart';
@@ -16,6 +18,8 @@ import "package:google_nav_bar/google_nav_bar.dart";
 //import '../providers/user_provider.dart';
 import 'mainPage.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../models/food_edamam.dart';
+
 //import 'homePageCard.dart';
 
 class MainPage extends StatefulWidget {
@@ -34,8 +38,8 @@ class _HomeState extends State<MainPage> {
     return [
       Home(),
       HomePage(), //Feed(), // Pass the user object to the Feed widget
-      //Chat(),
-      Container(), //FeedbackScreen(),
+      CategoryScreen(), //Chat(),
+      //Container(), //FeedbackScreen(),
       ProfilePage(),
     ];
   }
@@ -56,6 +60,8 @@ class _HomeState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     print("hompage");
+    print("run build");
+    fetchFoodCalories('1 apple');
     return Scaffold(
       backgroundColor: Colors.white,
       drawer: MyDrawer(

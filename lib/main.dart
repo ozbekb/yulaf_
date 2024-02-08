@@ -1,10 +1,17 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:social_wall/auth/auth.dart';
+import 'package:provider/provider.dart';
+import './models/database_provider.dart';
+// screens
+import './screens/category_screen.dart';
+import './screens/expense_screen.dart';
+import './screens/all_expenses.dart';
+import './models/food_edamam.dart';
 
 import 'firebase_options.dart';
 
-void main() async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
@@ -17,9 +24,25 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: AuthPage(),
+    print("run build");
+    fetchFoodCalories('1 apple');
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => DatabaseProvider()),
+        // Add other providers as needed...
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: AuthPage(),
+        //initialRoute: CategoryScreen.name,
+        routes: {
+          "cat": (context) => CategoryScreen(),
+          "/expense_screen": (context) => ExpenseScreen(),
+          "/all_expenses": (context) => AllExpenses(),
+          //ExpenseScreen.name: (_) => const ExpenseScreen(),
+          //AllExpenses.name: (_) => const AllExpenses(),
+        },
+      ),
     );
   }
 }
