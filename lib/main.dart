@@ -16,6 +16,16 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+
+  try {
+    print("food çalışş");
+    final foodData = await EdamamAPI.fetchFoodData('1 large apple');
+    final foodDat2 = await EdamamAPI.fetchFoodData('almond milk');
+    final foodDat = EdamamAPI.parseFoodData(foodDat2);
+    print(foodDat);
+  } catch (e) {
+    print('Error fetching food data: $e');
+  }
   runApp(const MyApp());
 }
 
@@ -25,7 +35,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     print("run build");
-    fetchFoodCalories('1 apple');
+    //fetchFoodCalories('1 apple');
+
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => DatabaseProvider()),

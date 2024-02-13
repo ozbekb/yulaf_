@@ -15,7 +15,7 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
-  var genderCont = "Gender";
+  var genderCont = "";
   final emailTextController = TextEditingController();
   final passwordTextController = TextEditingController();
   final heigthTextController = TextEditingController();
@@ -65,7 +65,46 @@ class _RegisterPageState extends State<RegisterPage> {
         'weigth': weigthTextController.text,
         'age': ageTextController.text,
         'bio': 'Empty bio...', //intial bio
+        "email": emailTextController.text,
+        "status": "Unavalible",
       });
+      DocumentReference getLoggedUserReference() {
+        final userReference = FirebaseFirestore.instance
+            .collection('Users')
+            .doc(FirebaseAuth.instance.currentUser?.email);
+        return userReference;
+      }
+
+      DocumentReference getUserReferenceById(userId) {
+        final userReference =
+            FirebaseFirestore.instance.collection('Users').doc(userId);
+        return userReference;
+      }
+
+      Future<bool> addFriend(friendId) async {
+        DocumentReference friendRef = getUserReferenceById(friendId);
+        DocumentReference loggedRef = getLoggedUserReference();
+
+        try {
+          // add friend to logged user
+          await FirebaseFirestore.instance
+              .collection('Users')
+              .doc(FirebaseAuth.instance.currentUser?.uid)
+              .collection('friends')
+              .add({'user_ref': friendRef});
+
+          // add friend to friend user
+          await FirebaseFirestore.instance
+              .collection('Users')
+              .doc(friendId)
+              .collection('friends')
+              .add({'user_ref': loggedRef});
+          return true;
+        } catch (err) {
+          print('Error $err');
+          return false;
+        }
+      }
 
       //pop laoding circle
       if (context.mounted) Navigator.pop(context);
