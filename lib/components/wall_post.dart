@@ -54,7 +54,7 @@ class _WallPostState extends State<WallPost> {
 
     Future<String> downloadURL(String imageName) async {
       String downloadURL =
-          await storage.ref("files/$imageName").getDownloadURL();
+          await storage.ref("image/$imageName").getDownloadURL();
       return downloadURL;
     } //Access the document in firebase
 
@@ -132,8 +132,7 @@ class _WallPostState extends State<WallPost> {
 
     return Container(
       decoration: BoxDecoration(
-          color: Color.fromARGB(255, 246, 181, 2),
-          borderRadius: BorderRadius.circular(8)),
+          color: Colors.grey.shade300, borderRadius: BorderRadius.circular(8)),
       margin: EdgeInsets.only(top: 25, left: 25, right: 25),
       padding: EdgeInsets.all(25),
       child: Column(
@@ -148,6 +147,14 @@ class _WallPostState extends State<WallPost> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                Row(
+                  children: [
+                    Text(
+                      widget.user.split("@")[0],
+                      style: TextStyle(color: Colors.grey),
+                    ),
+                  ],
+                ),
                 // Display the image if available
                 if (widget.imageUrl != null) Image.network(widget.imageUrl!),
 
@@ -193,26 +200,9 @@ class _WallPostState extends State<WallPost> {
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
                 ),
 
-                const SizedBox(
+                /* const SizedBox(
                   height: 5,
-                ),
-
-                Row(
-                  children: [
-                    Text(
-                      widget.user,
-                      style: TextStyle(color: Colors.grey),
-                    ),
-                    Text(
-                      " . ",
-                      style: TextStyle(color: Colors.grey),
-                    ),
-                    Text(
-                      widget.time,
-                      style: TextStyle(color: Colors.grey),
-                    ),
-                  ],
-                ),
+                ),*/
 
                 const SizedBox(
                   height: 20,
@@ -220,7 +210,7 @@ class _WallPostState extends State<WallPost> {
                 //buttons
 
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     //LIKE
                     Column(
@@ -255,7 +245,7 @@ class _WallPostState extends State<WallPost> {
                         //comment count
 
                         Text(
-                          '0',
+                          "",
                           style: TextStyle(color: Colors.blue),
                         )
                       ],
@@ -296,7 +286,16 @@ class _WallPostState extends State<WallPost> {
                               time: formatDate(commentData["CommentTime"]));
                         }).toList(),
                       );
-                    })
+                    }),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Text(
+                      widget.time,
+                      style: TextStyle(fontSize: 10, color: Colors.grey),
+                    ),
+                  ],
+                ),
               ],
             ),
           )
@@ -305,12 +304,12 @@ class _WallPostState extends State<WallPost> {
     );
   }
 
-  Future<String> downloadURL(String imageName) async {
+  /*Future<String> downloadURL(String imageName) async {
     print("downloadURl FUNCTION ");
     //String downloadURL = await storage.ref("files/$imageName").getDownloadURL();
 
     String downloadURL = await storage.ref(imageName).getDownloadURL();
     print("downloaded url " + downloadURL);
     return downloadURL;
-  }
+  }*/
 }

@@ -50,6 +50,8 @@ dependencies:
   sqflite: ^2.3.2
   path: ^1.9.0
   fluttertoast: ^8.2.4
+  youtube_player_flutter: ^8.1.2
+  google_fonts: ^6.1.0
 
 dev_dependencies:
   flutter_test:

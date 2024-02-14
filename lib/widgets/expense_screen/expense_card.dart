@@ -5,6 +5,7 @@ import '../../models/expense.dart';
 import './confirm_box.dart';
 import 'package:provider/provider.dart';
 import '/models/database_provider.dart';
+import '/./models/food_edamam.dart';
 
 class ExpenseCard extends StatelessWidget {
   final Expense exp;

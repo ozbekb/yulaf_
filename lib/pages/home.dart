@@ -24,8 +24,8 @@ class Home extends StatelessWidget {
         //ElevatedButton(onPressed: signInUser, child: const Text("Sign In")),
         homePageCard(
             titleStyle: titleStyle,
-            title: "KALORİ",
-            route: "",
+            title: "Calorie",
+            route: "calorie",
             gradient1: const Color.fromARGB(255, 214, 40, 72),
             gradient2: const Color.fromARGB(255, 247, 162, 113),
             iconData: Icons.dining_outlined),
@@ -39,8 +39,8 @@ class Home extends StatelessWidget {
         ),
         homePageCard(
           titleStyle: titleStyle,
-          title: "SPOR",
-          route: "",
+          title: "Exercise",
+          route: "video",
           gradient1: const Color(0xffbcc5ce),
           gradient2: const Color(0xff939fae),
           iconData: Icons.fitness_center,

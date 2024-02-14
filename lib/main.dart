@@ -8,6 +8,8 @@ import './screens/category_screen.dart';
 import './screens/expense_screen.dart';
 import './screens/all_expenses.dart';
 import './models/food_edamam.dart';
+import 'pages/video_screen.dart';
+import 'package:social_wall/screens/category_screen.dart';
 
 import 'firebase_options.dart';
 
@@ -50,6 +52,8 @@ class MyApp extends StatelessWidget {
           "cat": (context) => CategoryScreen(),
           "/expense_screen": (context) => ExpenseScreen(),
           "/all_expenses": (context) => AllExpenses(),
+          "video": (context) => VideoScreen(),
+          "calorie": (context) => CategoryScreen(),
           //ExpenseScreen.name: (_) => const ExpenseScreen(),
           //AllExpenses.name: (_) => const AllExpenses(),
         },

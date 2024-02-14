@@ -10,10 +10,11 @@ class CategoryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<DatabaseProvider>(context, listen: false);
-    provider.fetchExpenses("Carb.");
+
+    /*provider.fetchExpenses("C");
     provider.fetchExpenses("Protein");
     provider.fetchExpenses("Fat");
-    provider.fetchExpenses("Other");
+    provider.fetchExpenses("Other");*/
 
     if (true) {
       print("catscreen");

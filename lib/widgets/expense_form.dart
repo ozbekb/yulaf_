@@ -1,9 +1,13 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
 import '../models/database_provider.dart';
 import '../constants/icons.dart';
 import '../models/expense.dart';
+import '/./models/food_edamam.dart';
 
 class ExpenseForm extends StatefulWidget {
   const ExpenseForm({super.key});
@@ -15,6 +19,12 @@ class ExpenseForm extends StatefulWidget {
 class _ExpenseFormState extends State<ExpenseForm> {
   final _title = TextEditingController();
   final _amount = TextEditingController();
+  var foodName = "";
+  var foodCal = "";
+  var foodProt = "";
+  var foodFat = "";
+  var foodCarb = "";
+
   DateTime? _date;
   String _initialValue = 'Other';
 
@@ -31,6 +41,10 @@ class _ExpenseFormState extends State<ExpenseForm> {
         _date = pickedDate;
       });
     }
+  }
+
+  void changeText() {
+    setState(() {});
   }
 
   //
@@ -60,8 +74,9 @@ class _ExpenseFormState extends State<ExpenseForm> {
               ),
             ),
             const SizedBox(height: 20.0),
+
             // date picker
-            Row(
+            /*Row(
               children: [
                 Expanded(
                   child: Text(_date != null
@@ -73,8 +88,54 @@ class _ExpenseFormState extends State<ExpenseForm> {
                   icon: const Icon(Icons.calendar_month),
                 ),
               ],
+            ),*/
+            const SizedBox(height: 10.0),
+
+            ElevatedButton.icon(
+              onPressed: () async {
+                final foodDat2 = await EdamamAPI.fetchFoodData(_title.text);
+                final foodDat = EdamamAPI.parseFoodData(foodDat2);
+                print(foodDat);
+                //foodName = "banana";
+                //print(foodDat["calories"]);
+                foodName = foodDat["foodName"];
+                foodCal = foodDat["calories"].toString();
+                foodProt = foodDat["protein"].toString();
+                foodFat = foodDat["fat"].toString();
+                foodCarb = foodDat["carbs"].toString();
+
+                changeText();
+                setState(() {
+                  print(foodName);
+                });
+              },
+              icon: const Icon(Icons.search),
+              label: const Text('Search'),
             ),
             const SizedBox(height: 20.0),
+
+            Container(
+                alignment: Alignment.centerLeft,
+                padding: EdgeInsets.all(10),
+                //color: Colors.blue,
+                child: foodName != ""
+                    ? Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "name : " + foodName,
+                            //style: TextStyle(fontSize: 15),
+                          ),
+                          Text("calorie : " + foodCal),
+                          Text("protein : " + foodProt),
+                          Text("carbs : " + foodCal),
+                          Text("fat : " + foodFat),
+                        ],
+                      )
+                    : Text("")),
+            const SizedBox(height: 20.0),
+
             // category
             Row(
               children: [

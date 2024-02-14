@@ -11,7 +11,7 @@ class LikeButton extends StatelessWidget {
       onTap: onTap,
       child: Icon(
         isLiked ? Icons.favorite : Icons.favorite_border,
-        color: isLiked ? Colors.pink : Colors.pinkAccent,
+        color: isLiked ? Colors.red : Colors.redAccent,
       ),
     );
   }

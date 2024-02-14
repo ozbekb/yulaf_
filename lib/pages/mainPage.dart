@@ -35,7 +35,7 @@ class _HomeState extends State<MainPage> {
     return [
       Home(),
       HomePage(), //Feed(), // Pass the user object to the Feed widget
-      CategoryScreen(), //Chat(),
+      //CategoryScreen(), //Chat(),
       //Container(), //FeedbackScreen(),
       ProfilePage(),
     ];
@@ -121,10 +121,10 @@ class _HomeState extends State<MainPage> {
                   icon: Icons.feed,
                   text: 'Feed',
                 ),
-                GButton(
+                /*GButton(
                   icon: Icons.message,
                   text: 'Chat',
-                ),
+                ),*/
                 GButton(
                   icon: Icons.person,
                   text: 'Profile',

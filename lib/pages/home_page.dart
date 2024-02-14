@@ -12,6 +12,7 @@ import 'package:social_wall/pages/profile_page.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:path/path.dart' as Path;
+import 'package:social_wall/services/image_service.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -55,6 +56,7 @@ class _HomePageState extends State<HomePage> {
     setState(() {
       if (pickedFile != null) {
         _photo = File(pickedFile.path);
+        //uploadImageToFirebase(_photo, "deneme");
         uploadFile();
       } else {
         print('No image captured.');
@@ -70,7 +72,7 @@ class _HomePageState extends State<HomePage> {
     //fileName = fileName + (DateTime.now().toString()); // Get the file name from the path
     //imageUrl = fileName;
     final destination =
-        'files/$fileName'; // Define the destination path in Firebase Storage
+        'image/$fileName'; // Define the destination path in Firebase Storage
     print("DESTINATION");
     print(destination);
     imageUrl = destination;
@@ -122,7 +124,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.lime[300],
+      //backgroundColor: Colors.,
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
           setState(() {});
@@ -153,7 +155,8 @@ class _HomePageState extends State<HomePage> {
                           ListTile(
                             title: CircleAvatar(
                               radius: 55,
-                              backgroundColor: const Color(0xffFDCF09),
+                              backgroundColor:
+                                  Color.fromARGB(255, 101, 121, 230),
                               child: _photo != null
                                   ? ClipRRect(
                                       borderRadius: BorderRadius.circular(50),
@@ -166,7 +169,7 @@ class _HomePageState extends State<HomePage> {
                                     )
                                   : Container(
                                       decoration: BoxDecoration(
-                                          color: Colors.grey[200],
+                                          //color: Colors.pink,
                                           borderRadius:
                                               BorderRadius.circular(50)),
                                       width: 100,
