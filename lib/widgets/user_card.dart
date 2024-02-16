@@ -37,7 +37,7 @@ class UserCardCustom extends StatelessWidget {
             Positioned(
               right: 0,
               child: Container(
-                height: 70,
+                height: 40,
                 alignment: Alignment.centerLeft,
                 width: setWidth == 0 ? 330 : setWidth,
                 decoration: BoxDecoration(
