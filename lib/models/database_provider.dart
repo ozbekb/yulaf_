@@ -4,8 +4,12 @@ import 'package:path/path.dart';
 import '../constants/icons.dart';
 import './ex_category.dart';
 import './expense.dart';
+import '/./models/food_edamam.dart';
 
 class DatabaseProvider with ChangeNotifier {
+  double totalProtein = 0.0;
+  double totalcarb = 0.0;
+  double totalfat = 0.0;
   String _searchText = '';
   String get searchText => _searchText;
   set searchText(String value) {
@@ -210,6 +214,12 @@ class DatabaseProvider with ChangeNotifier {
         List<Expense> nList = List.generate(
             converted.length, (index) => Expense.fromString(converted[index]));
         _expenses = nList;
+        print("all expenses");
+        for (Expense e in _expenses) {
+          print(e.title);
+        }
+        //print(_expenses);
+        // _expenses.map((e) => print(e.title));
         return _expenses;
       });
     });
@@ -258,5 +268,103 @@ class DatabaseProvider with ChangeNotifier {
     }
     // return the list
     return data;
+  }
+
+  Future<double> getProtein() async {
+    double result = 0.0;
+    var list = await fetchAllExpenses();
+
+    // List to store the futures of fetching food data
+    List<Future<Map<String, dynamic>>> foodDataFutures = [];
+
+    for (Expense e in list) {
+      foodDataFutures.add(EdamamAPI.fetchFoodData(e.title));
+    }
+
+    // Wait for all the asynchronous operations to complete
+    List<Map<String, dynamic>> foodDataList =
+        await Future.wait(foodDataFutures);
+
+    for (Map<String, dynamic> foodData in foodDataList) {
+      final parsedFoodData = EdamamAPI.parseFoodData(foodData);
+      result += double.parse(parsedFoodData["protein"].toString());
+    }
+
+    totalProtein = result;
+    print(totalProtein);
+    print("result " + result.toString());
+
+    return result;
+    //final provider = Provider.of<DatabaseProvider>(context, listen: false);
+
+    /* double result = 0.0;
+    var list = await fetchAllExpenses();
+
+//list.map((e) => null)
+
+    for (Expense e in list) {
+      final food = await EdamamAPI.fetchFoodData(e.title);
+      final foodData = EdamamAPI.parseFoodData(food);
+      //print(foodData["protein"]);
+      result += double.parse(foodData["protein"].toString());
+    }
+    print(result);
+    totalProtein = result;
+
+    return result;*/
+  }
+
+  Future<double> getCarb() async {
+    double result = 0.0;
+    var list = await fetchAllExpenses();
+
+    // List to store the futures of fetching food data
+    List<Future<Map<String, dynamic>>> foodDataFutures = [];
+
+    for (Expense e in list) {
+      foodDataFutures.add(EdamamAPI.fetchFoodData(e.title));
+    }
+
+    // Wait for all the asynchronous operations to complete
+    List<Map<String, dynamic>> foodDataList =
+        await Future.wait(foodDataFutures);
+
+    for (Map<String, dynamic> foodData in foodDataList) {
+      final parsedFoodData = EdamamAPI.parseFoodData(foodData);
+      result += double.parse(parsedFoodData["carbs"].toString());
+    }
+
+    totalcarb = result;
+    print(totalcarb);
+    print("result " + result.toString());
+
+    return result;
+  }
+
+  Future<double> getFat() async {
+    double result = 0.0;
+    var list = await fetchAllExpenses();
+
+    // List to store the futures of fetching food data
+    List<Future<Map<String, dynamic>>> foodDataFutures = [];
+
+    for (Expense e in list) {
+      foodDataFutures.add(EdamamAPI.fetchFoodData(e.title));
+    }
+
+    // Wait for all the asynchronous operations to complete
+    List<Map<String, dynamic>> foodDataList =
+        await Future.wait(foodDataFutures);
+
+    for (Map<String, dynamic> foodData in foodDataList) {
+      final parsedFoodData = EdamamAPI.parseFoodData(foodData);
+      result += double.parse(parsedFoodData["fat"].toString());
+    }
+
+    totalfat = result;
+    print(totalfat);
+    print("result " + result.toString());
+
+    return result;
   }
 }

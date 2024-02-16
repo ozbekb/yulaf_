@@ -4,6 +4,10 @@ class Expense {
   final double amount; // how much are we spending
   final DateTime date; // when are we spending
   final String category; // which category on we spending
+  /*final String cal;
+  final String protein;
+  final String carb;
+  final String fat;*/
 
   // constructor
   Expense({
@@ -12,6 +16,10 @@ class Expense {
     required this.amount,
     required this.date,
     required this.category,
+    /*required this.cal,
+    required this.carb,
+    required this.fat,
+    required this.protein*/
   });
 
   // 'Expense' to 'Map'

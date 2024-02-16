@@ -152,7 +152,7 @@ class _HomePageState extends State<HomePage> {
                               //.pop(); // Close the bottom sheet after selection
                             },
                           ),
-                          ListTile(
+                          /*ListTile(
                             title: CircleAvatar(
                               radius: 55,
                               backgroundColor:
@@ -180,7 +180,7 @@ class _HomePageState extends State<HomePage> {
                                       ),
                                     ),
                             ),
-                          ),
+                          ),*/
                           /*
                           new ListTile(
                             leading: new Icon(Icons.photo_camera),
@@ -194,7 +194,7 @@ class _HomePageState extends State<HomePage> {
                           Container(
                             //height: 300,
                             width: 500,
-                            color: Colors.pink,
+                            //color: Colors.pink,
                             child: MyTextField(
                                 controller: textController,
                                 hintText: "Explanation",

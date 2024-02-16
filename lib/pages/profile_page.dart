@@ -25,7 +25,7 @@ class _ProfilePageState extends State<ProfilePage> {
     await showDialog(
         context: context,
         builder: (context) => AlertDialog(
-              backgroundColor: Color.fromARGB(255, 197, 0, 251),
+              backgroundColor: Color.fromARGB(255, 152, 142, 225),
               title: Text(
                 "Edit " + field,
                 style: const TextStyle(color: Colors.white),
@@ -34,8 +34,9 @@ class _ProfilePageState extends State<ProfilePage> {
                 autofocus: true,
                 style: TextStyle(color: Colors.white),
                 decoration: InputDecoration(
-                    hintText: "Enter new $field",
-                    hintStyle: TextStyle(color: Colors.grey)),
+                  hintText: "Enter new $field",
+                  //hintStyle: TextStyle(color: Colors.grey)
+                ),
                 onChanged: (value) {
                   newValue = value;
                 },
@@ -69,124 +70,124 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.lime[300],
+        //backgroundColor: Colors.lime[300],
         /*appBar: AppBar(
           title: Text("Profile Page"),
           backgroundColor: Color.fromARGB(255, 197, 0, 251),
         ),*/
         body: StreamBuilder<DocumentSnapshot>(
-          stream: FirebaseFirestore.instance
-              .collection("Users")
-              .doc(currentUser.email)
-              .snapshots(),
-          builder: (context, snapshot) {
-            //get user data
-            if (snapshot.hasData) {
-              final userData = snapshot.data!.data() as Map<String, dynamic>;
-              return ListView(
+      stream: FirebaseFirestore.instance
+          .collection("Users")
+          .doc(currentUser.email)
+          .snapshots(),
+      builder: (context, snapshot) {
+        //get user data
+        if (snapshot.hasData) {
+          final userData = snapshot.data!.data() as Map<String, dynamic>;
+          return ListView(
+            children: [
+              const SizedBox(
+                height: 10,
+              ),
+              //profile pic
+              Icon(
+                Icons.person,
+                size: 72,
+              ),
+
+              const SizedBox(
+                height: 10,
+              ),
+
+              //user email
+              Text(
+                currentUser.email!,
+                textAlign: TextAlign.center,
+                style: TextStyle(color: Colors.grey[700]),
+              ),
+
+              //user details
+              Padding(
+                padding: const EdgeInsets.only(left: 25),
+                child: Text(
+                  "My Details",
+                  style: TextStyle(color: Colors.grey[600]),
+                ),
+              ),
+
+              //username
+              MyTextBox(
+                text: userData['nameSurname'],
+                sectionName: 'Name',
+                onPressed: () => editField('name'),
+              ),
+
+              MyTextBox(
+                text: userData['heigth'],
+                sectionName: 'Heigth',
+                onPressed: () => editField('heigth'),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const SizedBox(
-                    height: 50,
-                  ),
-                  //profile pic
-                  Icon(
-                    Icons.person,
-                    size: 72,
-                  ),
-
-                  const SizedBox(
-                    height: 10,
-                  ),
-
-                  //user email
-                  Text(
-                    currentUser.email!,
-                    textAlign: TextAlign.center,
-                    style: TextStyle(color: Colors.grey[700]),
-                  ),
-
-                  //user details
                   Padding(
-                    padding: const EdgeInsets.only(left: 25),
-                    child: Text(
-                      "My Details",
-                      style: TextStyle(color: Colors.grey[600]),
+                    padding: const EdgeInsets.all(0),
+                    child: MyTextBox(
+                      text: userData['heigth'],
+                      sectionName: 'Heigth',
+                      onPressed: () => editField('heigth'),
                     ),
                   ),
-
-                  //username
-                  MyTextBox(
-                    text: userData['nameSurname'],
-                    sectionName: 'Name',
-                    onPressed: () => editField('name'),
-                  ),
-
-                  MyTextBox(
-                    text: userData['heigth'],
-                    sectionName: 'Heigth',
-                    onPressed: () => editField('heigth'),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(0),
-                        child: MyTextBox(
-                          text: userData['heigth'],
-                          sectionName: 'Heigth',
-                          onPressed: () => editField('heigth'),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(0),
-                        child: MyTextBox(
-                          text: userData['weigth'],
-                          sectionName: 'Weigth',
-                          onPressed: () => editField('weigth'),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(0),
-                        child: MyTextBox(
-                          text: userData['age'],
-                          sectionName: 'Age',
-                          onPressed: () => editField('age'),
-                        ),
-                      ),
-                    ],
-                  ),
-
-                  //bio
-                  MyTextBox(
-                    text: userData['bio'],
-                    sectionName: 'bio',
-                    onPressed: () => editField('bio'),
-                  ),
-
-                  const SizedBox(
-                    height: 50,
-                  ),
-
-                  //user posts
                   Padding(
-                    padding: const EdgeInsets.only(left: 25),
-                    child: Text(
-                      "My Posts",
-                      style: TextStyle(color: Colors.grey[600]),
+                    padding: const EdgeInsets.all(0),
+                    child: MyTextBox(
+                      text: userData['weigth'],
+                      sectionName: 'Weigth',
+                      onPressed: () => editField('weigth'),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(0),
+                    child: MyTextBox(
+                      text: userData['age'],
+                      sectionName: 'Age',
+                      onPressed: () => editField('age'),
                     ),
                   ),
                 ],
-              );
-            } else if (snapshot.hasError) {
-              return Center(
-                child: Text('Error${snapshot.error}'),
-              );
-            }
+              ),
 
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          },
-        ));
+              //bio
+              MyTextBox(
+                text: userData['bio'],
+                sectionName: 'bio',
+                onPressed: () => editField('bio'),
+              ),
+
+              const SizedBox(
+                height: 50,
+              ),
+
+              //user posts
+              Padding(
+                padding: const EdgeInsets.only(left: 25),
+                child: Text(
+                  "My Posts",
+                  style: TextStyle(color: Colors.grey[600]),
+                ),
+              ),
+            ],
+          );
+        } else if (snapshot.hasError) {
+          return Center(
+            child: Text('Error${snapshot.error}'),
+          );
+        }
+
+        return const Center(
+          child: CircularProgressIndicator(),
+        );
+      },
+    ));
   }
 }

@@ -26,7 +26,7 @@ class _ExpenseFormState extends State<ExpenseForm> {
   var foodCarb = "";
 
   DateTime? _date;
-  String _initialValue = 'Other';
+  String _initialValue = 'Breakfast';
 
   //
   _pickDate() async {
@@ -112,11 +112,11 @@ class _ExpenseFormState extends State<ExpenseForm> {
               icon: const Icon(Icons.search),
               label: const Text('Search'),
             ),
-            const SizedBox(height: 20.0),
+            //const SizedBox(height: 10.0),
 
             Container(
                 alignment: Alignment.centerLeft,
-                padding: EdgeInsets.all(10),
+                padding: EdgeInsets.all(5),
                 //color: Colors.blue,
                 child: foodName != ""
                     ? Column(

@@ -9,6 +9,7 @@ class homePageCard extends StatelessWidget {
     required this.gradient1,
     required this.gradient2,
     required this.iconData,
+    required this.imageUrl,
   });
   final TextStyle titleStyle;
   final String title;
@@ -16,6 +17,7 @@ class homePageCard extends StatelessWidget {
   final Color gradient1;
   final Color gradient2;
   final IconData iconData;
+  final String imageUrl;
 
   @override
   Widget build(BuildContext context) {
@@ -35,23 +37,29 @@ class homePageCard extends StatelessWidget {
                 color: Colors.black26,
               ),
             ],
+            /*
             gradient: LinearGradient(
                 colors: [gradient1, gradient2],
                 begin: Alignment.topLeft,
-                end: Alignment.bottomRight),
+                end: Alignment.bottomRight),*/
+            image: DecorationImage(
+              image: NetworkImage(imageUrl),
+              fit: BoxFit.cover,
+            ),
             borderRadius: BorderRadius.circular(15)),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(title, style: titleStyle),
-            Align(
+
+            /*Align(
                 alignment: Alignment.bottomRight,
                 child: Icon(
                   iconData,
                   color: Colors.white,
                   size: MediaQuery.of(context).size.width / 6,
-                )),
+                )),*/
           ],
         ),
       ),
