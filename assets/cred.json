@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "yulaf-app-kosx",
+  "private_key_id": "b6051f7f32aef96398bfc2e7427a73edf4620eca",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDjyI0fvYDteuJo\nMWh22cc6M96wnnU/aa8/EGwypfnAskclMbejfRrtOjKljgZQ85qyt2JTZET6/q1+\nzh3FSmXEFwtOlkTxQ2MFsQc/eo4ZRKC5BpD/eKo0WsSwjKFuK7l23oA6gyiQV1cL\nTZwlKPPbMcLzRdIEN4Xkh41pf/ev1Gj7XTaQ9JwYicrh3MfCDGMNqJTtO8wOdr4B\nogrFL6Qk6EOp3J7Mld58KdCHgiZLlhjfvRn6ODeBNAgQXfCL24zodAvgP59DGJgP\nPOSXRDg3zcpQbEyCZH9ac2p6W+09jpXDDqxRTCW+H8oij/xekkoG2jwMlgQv5dwQ\n5+V3LVYFAgMBAAECggEABnJdzXkAu00/4itf0FlP4lhRzwA1GPiF7WGAG8Yxyt/g\n0+8pH4yXZKvB1N4E/2ky8X2aNU+rBMriIIAh5zxjTp5JA3jiS6JuHNz1SQ56vhar\nUSvxPPcZI3ExjD5MBVZhzI5LOnINha71zOFDRZP3+YtaKqYeZbXSlB9irl/g+TjF\nRx1Gb5ds4G/9F4rHAeSNo41XJrpjlOy6iaKppQmgqTG7R5bATiStPDxYeHZDd9XY\nk7Z7B7LxuA9jOOxj2O8RVMx80zh1RjslQ3IgzgEn37ExWVjb5eBWDYSkSozYgWhG\nWGGnRurFbVskkZZbRPX9fIDIqjA9gbjPvIxcOANjQwKBgQD2zLTyD8KNvoUOvsa+\ntVqmt16b3cRw6QOWWdl1mZnq0PrLDmicr5cW/iUfEJXuYvIlv4pBzvEL4iMv1cuF\nSzdTYCqH6jhtJXQtYpv1uW5Zdji8h1bUf+xxRJgzotib2wkMHGoZWFBaezdtGH1+\nPdUkeMQDPFN2Jd0SL1zqTzw95wKBgQDsRl21QrcznMTIWO5ZMQHxUkQry6XfDEmp\nqfbTdSgiJ2ih8gJRt9Snk4PTPIgqRwBRl0EG1x0b+o6QGDaH3pdxywVRTYPrJgbB\nUFsPvhLkC3tI66yz1LTuPxLifIpTfTxC6xOt9+VRjuB19z49uMaP6/KXFV+93hnL\nJH29klDXMwKBgBLHswE0d86Hb+KWW9NJQ5OqInXj4z3gTViUj7qmLJM0wdDP0OAT\ncIDcaAC8J1yThO+gaqnlUGxiEeFi+HC1L4mVqMbc6NxNXFDTzyBcsuv11g1qkw3q\nihh4asiLHMaHXWHhi6VQFhU8iRQxJ+OCWwTCd8/zODqmWPM4TW67Bs+DAoGAGNUs\ndCiW6K3JYOU359fmxF5JG/FDdbXs6BAdCQx/M1fA/4RYCg6wIwy2BjWOeiMMPYcQ\nJo/lV1N2OF7THGSgti0IWgszmjtc6mRvra/kfGNYicl7VUs92Ox4J6W/RBcdhkr+\nvoIXcAL8RGm/+Oy6sdWyoX51mZcGTvt+27XNGVECgYEApAz8SRUbyUpeo+B9nGFM\neyGVhJOX+UDFCMUPS0iv5HCIsp9Zdy+Hgry12r9uv9dMSPEV7sBJ+Dm46FapXqIi\nyj8A3JHxPCkDMoUvS6Oqsyph25/Sx5tilfNppVywe+5cYzhGyrGXUwPQnpKU2g9U\nPbq7Ntj6gzcDBrGzm3Rs8Y8=\n-----END PRIVATE KEY-----\n",
+  "client_email": "yulaf-app@yulaf-app-kosx.iam.gserviceaccount.com",
+  "client_id": "105600961043270470900",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/yulaf-app%40yulaf-app-kosx.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

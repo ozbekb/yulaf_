@@ -1,6 +1,218 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:social_wall/components/comment.dart';
+import 'package:social_wall/components/like_button.dart';
+import 'package:social_wall/helper/helper_method.dart';
+//import 'package:firebase_storage/firebase_storage.dart' as fire;
+import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
+
+import 'comment_button.dart';
+
+class WallPost extends StatefulWidget {
+  final String message;
+  final String user;
+  final String time;
+  final String postId;
+  final String? imageUrl;
+  final List<String> likes;
+
+  const WallPost({
+    Key? key,
+    required this.user,
+    required this.time,
+    required this.message,
+    required this.postId,
+    required this.likes,
+    required this.imageUrl,
+  }) : super(key: key);
+
+  @override
+  State<WallPost> createState() => _WallPostState();
+}
+
+class _WallPostState extends State<WallPost> {
+  final firebase_storage.FirebaseStorage storage =
+      firebase_storage.FirebaseStorage.instance;
+
+  //user
+  final currentUser = FirebaseAuth.instance.currentUser!;
+  bool isLiked = false;
+
+  //comment text controller
+  final _commentTextController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    isLiked = widget.likes.contains(currentUser.email);
+  }
+
+  //toggle like
+  void toggleLike() {
+    setState(() {
+      isLiked = !isLiked;
+    });
+
+    DocumentReference postRef =
+        FirebaseFirestore.instance.collection('User Posts').doc(widget.postId);
+
+    if (isLiked) {
+      postRef.update({
+        'Likes': FieldValue.arrayUnion([currentUser.email]),
+        'ImageUrl': widget.imageUrl,
+      });
+    } else {
+      postRef.update({
+        'Likes': FieldValue.arrayRemove([currentUser.email]),
+        'ImageUrl': widget.imageUrl,
+      });
+    }
+  }
+
+  //add a comment
+  void addComment(String commentText) {
+    FirebaseFirestore.instance
+        .collection("User Posts")
+        .doc(widget.postId)
+        .collection("Comments")
+        .add({
+      "CommentText": commentText,
+      "CommentedBy": currentUser.email,
+      "CommentTime": Timestamp.now(),
+    });
+  }
+
+  //show a dialog box for adding comment
+  void showCommentDialog() {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text("Add Comment"),
+        content: TextField(
+          controller: _commentTextController,
+          decoration: InputDecoration(hintText: "Write a comment..."),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.pop(context);
+              _commentTextController.clear();
+            },
+            child: Text("Cancel"),
+          ),
+          TextButton(
+            onPressed: () {
+              addComment(_commentTextController.text);
+              Navigator.pop(context);
+              _commentTextController.clear();
+            },
+            child: Text("Post"),
+          ),
+        ],
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.grey.shade300,
+        borderRadius: BorderRadius.circular(8),
+      ),
+      margin: EdgeInsets.only(top: 25, left: 25, right: 25),
+      padding: EdgeInsets.all(25),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Text(
+                widget.user.split("@")[0],
+                style: TextStyle(color: Colors.grey),
+              ),
+            ],
+          ),
+          if (widget.imageUrl != null)
+            FutureBuilder<String>(
+              future: getImageDownloadUrl(widget.imageUrl!),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.done) {
+                  if (snapshot.hasError) {
+                    return Container(); // Placeholder or error handling widget
+                  }
+                  return Image.network(snapshot.data!);
+                } else {
+                  return CircularProgressIndicator();
+                }
+              },
+            ),
+          Text(
+            widget.message,
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              LikeButton(isLiked: isLiked, onTap: toggleLike),
+              SizedBox(width: 10),
+              CommentButton(onTap: showCommentDialog),
+            ],
+          ),
+          StreamBuilder<QuerySnapshot>(
+            stream: FirebaseFirestore.instance
+                .collection("User Posts")
+                .doc(widget.postId)
+                .collection("Comments")
+                .orderBy("CommentTime", descending: true)
+                .snapshots(),
+            builder: (context, snapshot) {
+              if (!snapshot.hasData) {
+                return Center(child: CircularProgressIndicator());
+              }
+              return ListView(
+                shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
+                children: snapshot.data!.docs.map((doc) {
+                  final commentData = doc.data() as Map<String, dynamic>;
+                  return Comment(
+                    text: commentData["CommentText"],
+                    user: commentData["CommentedBy"],
+                    time: formatDate(commentData["CommentTime"]),
+                  );
+                }).toList(),
+              );
+            },
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Text(
+                widget.time,
+                style: TextStyle(fontSize: 10, color: Colors.grey),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  Future<String> getImageDownloadUrl(String imagePath) async {
+    firebase_storage.Reference ref = storage.ref().child(imagePath);
+    return await ref.getDownloadURL();
+  }
+}
+
+
+
+
+
+
+/*import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:social_wall/components/comment.dart';
 import 'package:social_wall/components/like_button.dart';
@@ -313,3 +525,4 @@ class _WallPostState extends State<WallPost> {
     return downloadURL;
   }*/
 }
+*/

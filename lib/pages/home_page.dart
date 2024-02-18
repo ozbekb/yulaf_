@@ -71,8 +71,10 @@ class _HomePageState extends State<HomePage> {
     final fileName = Path.basename(_photo!.path);
     //fileName = fileName + (DateTime.now().toString()); // Get the file name from the path
     //imageUrl = fileName;
+    final timestamp = DateTime.now().millisecondsSinceEpoch;
+
     final destination =
-        'image/$fileName'; // Define the destination path in Firebase Storage
+        'files/$timestamp-$fileName'; // Define the destination path in Firebase Storage
     print("DESTINATION");
     print(destination);
     imageUrl = destination;
@@ -214,7 +216,10 @@ class _HomePageState extends State<HomePage> {
                   ),*/
                   actions: [
                     TextButton(
-                      onPressed: postMessage,
+                      onPressed: (() {
+                        postMessage();
+                        Navigator.of(context).pop();
+                      }),
                       child: const Text('Add'),
                     ),
                     // icon: const Icon(Icons.arrow_circle_up)),
@@ -320,5 +325,11 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
     );
+  }
+
+  Future<String> getImageDownloadUrl(String imagePath) async {
+    firebase_storage.Reference ref =
+        firebase_storage.FirebaseStorage.instance.ref().child(imagePath);
+    return await ref.getDownloadURL();
   }
 }

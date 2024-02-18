@@ -59,6 +59,8 @@ class _HomeState extends State<MainPage> {
     print("hompage");
     return Scaffold(
       backgroundColor: Colors.white,
+      //floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
+
       drawer: MyDrawer(
         onProfileTap: goToProfilePage,
         onSignOut: signOut,
