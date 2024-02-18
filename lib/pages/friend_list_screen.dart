@@ -66,7 +66,7 @@ class _FriendListScreenState extends State<FriendListScreen> {
                   return SizedBox(
                     height: friends.length * 91,
                     child: friends.isEmpty
-                        ? const ErrorMessageCustom(text: "Dodajte prijatelje.")
+                        ? const ErrorMessageCustom(text: "Add friends.")
                         : ListView.builder(
                             itemCount: friends.length,
                             physics: const NeverScrollableScrollPhysics(),
@@ -97,8 +97,8 @@ class _FriendListScreenState extends State<FriendListScreen> {
                                               userObject.email);
                                           Fluttertoast.showToast(
                                             msg: res == true
-                                                ? "Uklonjen iz prijatelja."
-                                                : "Pogreška.",
+                                                ? "Removed from friends."
+                                                : "Error.",
                                             toastLength: Toast.LENGTH_SHORT,
                                             gravity: ToastGravity.BOTTOM,
                                             backgroundColor: res == true

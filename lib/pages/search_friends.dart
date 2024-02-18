@@ -111,8 +111,8 @@ class _SearchFriendsScreenState extends State<SearchFriendsScreen> {
                                                   friend.email);
                                               Fluttertoast.showToast(
                                                 msg: res == true
-                                                    ? "Uklonjen iz prijatelja!"
-                                                    : "Pogreška.",
+                                                    ? "Removed from friends!"
+                                                    : "Error.",
                                                 toastLength: Toast.LENGTH_SHORT,
                                                 gravity: ToastGravity.BOTTOM,
                                                 backgroundColor: res == true
@@ -130,8 +130,8 @@ class _SearchFriendsScreenState extends State<SearchFriendsScreen> {
                                                   await addFriend(friend.email);
                                               Fluttertoast.showToast(
                                                 msg: res == true
-                                                    ? "Dodan za prijatelja!"
-                                                    : "Pogreška.",
+                                                    ? "Added as a friend!"
+                                                    : "Error.",
                                                 toastLength: Toast.LENGTH_SHORT,
                                                 gravity: ToastGravity.BOTTOM,
                                                 backgroundColor: res == true
