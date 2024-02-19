@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:social_wall/auth/auth.dart';
 import 'package:provider/provider.dart';
+import 'package:social_wall/pages/challenge_option.dart';
 import './models/database_provider.dart';
 // screens
 import './screens/category_screen.dart';

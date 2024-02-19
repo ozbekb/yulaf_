@@ -4,8 +4,6 @@ import 'package:social_wall/components/my_list_tile.dart';
 import 'package:social_wall/pages/friend_list_screen.dart';
 import 'package:social_wall/pages/group_list_page.dart';
 
-import 'package:social_wall/pages/search_friends.dart';
-
 class MyDrawer extends StatelessWidget {
   final void Function()? onProfileTap;
   final void Function()? onSignOut;

@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:social_wall/auth/login_or_register.dart';
 import 'package:social_wall/pages/mainPage.dart';
 
-import '../pages/home_page.dart';
-
 class AuthPage extends StatelessWidget {
   const AuthPage({super.key});
 

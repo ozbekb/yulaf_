@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:social_wall/models/user.dart';
+import 'package:social_wall/pages/chat_page.dart';
 import 'package:social_wall/pages/friends_profile.dart';
 import 'package:social_wall/widgets/unanimated_route.dart';
 
@@ -29,7 +30,9 @@ class UserCardCustom extends StatelessWidget {
           Navigator.push(
             context,
             UnanimatedRoute(
-                builder: (context) => FriendsProfileScreen(user: user)),
+                builder: (context) => ChatPage(
+                      receiverUserEmail: user.email,
+                    )),
           );
         },
         child: Stack(

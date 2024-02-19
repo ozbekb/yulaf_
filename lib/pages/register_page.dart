@@ -67,6 +67,7 @@ class _RegisterPageState extends State<RegisterPage> {
         'bio': 'Empty bio...', //intial bio
         "email": emailTextController.text,
         "status": "Unavalible",
+        "total": 0.0,
       });
       DocumentReference getLoggedUserReference() {
         final userReference = FirebaseFirestore.instance

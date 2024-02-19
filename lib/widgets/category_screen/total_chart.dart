@@ -1,7 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
+import 'package:social_wall/models/user.dart';
 import '../../models/database_provider.dart';
 import 'package:social_wall/widgets/all_expenses_screen/all_expenses_fetcher.dart';
 
@@ -46,6 +49,54 @@ class _TotalChartState extends State<TotalChart> {
     setState(() {}); // Update the UI after fetching the protein value
   }
 
+  // Function to update the total for a user in Firebase
+  Future<void> updateTotalForUser(String? userEmail, double newTotal) async {
+    print("update içi");
+    print(newTotal);
+    try {
+      // Get the reference to the user document in Firestore
+      CollectionReference usersCollection =
+          FirebaseFirestore.instance.collection('Users');
+      print("update after change");
+      DocumentReference userRef = usersCollection.doc(userEmail);
+
+      // Get the current user data
+      DocumentSnapshot userSnapshot = await userRef.get();
+      if (userSnapshot.exists) {
+        print("CURRENT USSERRRRR!!!");
+        UserC currentUser = UserC.fromDocument(userSnapshot);
+
+        // Update the total property
+
+        currentUser.total = newTotal;
+
+        print(currentUser.total);
+
+        // Update the total property in Firestore
+        await userRef.update({'total': currentUser.total});
+      } else {
+        print('User not found');
+      }
+    } catch (e) {
+      print('Error updating total: $e');
+    }
+  }
+
+  Future<String?> getCurrentUserEmail() async {
+    try {
+      User? user = FirebaseAuth.instance.currentUser;
+      if (user != null) {
+        return user.email;
+      } else {
+        print('No user signed in.');
+        return null;
+      }
+    } catch (e) {
+      print('Error getting current user email: $e');
+      return null;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Consumer<DatabaseProvider>(builder: (_, db, __) {
@@ -80,6 +131,10 @@ class _TotalChartState extends State<TotalChart> {
       print("total fat " + db.totalfat.toString());
 
       var total = db.calculateTotalExpenses();
+      User? user = FirebaseAuth.instance.currentUser;
+      String? email = user?.email;
+      updateTotalForUser(email, total);
+
       return Row(
         children: [
           Expanded(

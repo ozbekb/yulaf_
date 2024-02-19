@@ -242,7 +242,8 @@ class _SearchPageState extends State<SearchPage> {
                               }
                             },
                             style: ElevatedButton.styleFrom(
-                              primary: userJoined ? Colors.red : Colors.blue,
+                              backgroundColor:
+                                  userJoined ? Colors.red : Colors.blue,
                             ),
                             child: Text(userJoined ? 'Leave' : 'Join'),
                           ),
@@ -253,7 +254,7 @@ class _SearchPageState extends State<SearchPage> {
                                 deleteGroup(groupData['groupId'], context);
                               },
                               style: ElevatedButton.styleFrom(
-                                primary: Colors.black,
+                                backgroundColor: Colors.black,
                               ),
                               child: Text('Delete'),
                             ),
