@@ -4,8 +4,6 @@ import 'package:social_wall/components/my_list_tile.dart';
 import 'package:social_wall/pages/friend_list_screen.dart';
 import 'package:social_wall/pages/group_list_page.dart';
 
-import 'package:social_wall/pages/search_friends.dart';
-
 class MyDrawer extends StatelessWidget {
   final void Function()? onProfileTap;
   final void Function()? onSignOut;
@@ -42,32 +40,32 @@ class MyDrawer extends StatelessWidget {
                   icon: Icons.person,
                   text: 'P R O F I L E',
                   onTap: onProfileTap),
-              MyListTile(
-                  icon: Icons.chat,
-                  text: 'CHALLENGE GROUPS',
-                  onTap: () {
-                    // Navigate to ChatPage when tapped
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) =>
-                            const GroupListScreen(), // You might need to pass user data to ChatPage
-                      ),
-                    );
-                  }),
-              MyListTile(
-                  icon: Icons.chat,
-                  text: 'FRIENDS',
-                  onTap: () {
-                    // Navigate to ChatPage when tapped
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) =>
-                            const FriendListScreen(), // You might need to pass user data to ChatPage
-                      ),
-                    );
-                  }),
+              // MyListTile(
+              //     icon: Icons.chat,
+              //     text: 'CHALLENGE GROUPS',
+              //     onTap: () {
+              //       // Navigate to ChatPage when tapped
+              //       Navigator.push(
+              //         context,
+              //         MaterialPageRoute(
+              //           builder: (context) =>
+              //               const GroupListScreen(), // You might need to pass user data to ChatPage
+              //         ),
+              //       );
+              //     }),
+              // MyListTile(
+              //     icon: Icons.chat,
+              //     text: 'FRIENDS',
+              //     onTap: () {
+              //       // Navigate to ChatPage when tapped
+              //       Navigator.push(
+              //         context,
+              //         MaterialPageRoute(
+              //           builder: (context) =>
+              //               const FriendListScreen(), // You might need to pass user data to ChatPage
+              //         ),
+              //       );
+              //     }),
             ],
           ),
 

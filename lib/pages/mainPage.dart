@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:social_wall/pages/friend_list_screen.dart';
 //import 'package:yulaf_app/home/authentication_screen.dart';
 //import 'package:yulaf_app/home/authentication_viewmodel.dart';
 //import 'package:yulaf_app/home/chat.dart';
@@ -34,7 +35,8 @@ class _HomeState extends State<MainPage> {
   static List<Widget> _widgetOptions() {
     return [
       Home(),
-      HomePage(), //Feed(), // Pass the user object to the Feed widget
+      HomePage(),
+      FriendListScreen(), //Feed(), // Pass the user object to the Feed widget
       //CategoryScreen(), //Chat(),
       //Container(), //FeedbackScreen(),
       ProfilePage(),
@@ -123,10 +125,10 @@ class _HomeState extends State<MainPage> {
                   icon: Icons.feed,
                   text: 'Feed',
                 ),
-                /*GButton(
+                GButton(
                   icon: Icons.message,
                   text: 'Chat',
-                ),*/
+                ),
                 GButton(
                   icon: Icons.person,
                   text: 'Profile',

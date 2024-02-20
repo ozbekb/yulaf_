@@ -40,7 +40,7 @@ class _FriendListScreenState extends State<FriendListScreen> {
         child: Column(
           children: [
             TopNavigationCustom(
-              leftIcon: Icons.arrow_back,
+              leftIcon: null,
               mainText: "FRIENDS",
               rightIcon: Icons.person_add_alt_1,
               isSmall: true,

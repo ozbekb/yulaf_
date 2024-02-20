@@ -3,6 +3,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:social_wall/pages/challenge_option.dart';
 
 class SearchPage extends StatefulWidget {
   @override
@@ -227,40 +228,95 @@ class _SearchPageState extends State<SearchPage> {
                     // Check if the current user is the admin of the group
                     bool isAdmin = isCurrentUserAdmin(groupData);
 
-                    return ListTile(
-                      title: Text(groupData['groupName']),
-                      // Customize how you want to display each matching group item
-                      trailing: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          ElevatedButton(
-                            onPressed: () {
-                              if (userJoined) {
-                                leaveGroup(groupData['groupId'], context);
-                              } else {
-                                joinGroup(groupData['groupId']);
-                              }
-                            },
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor:
-                                  userJoined ? Colors.red : Colors.blue,
-                            ),
-                            child: Text(userJoined ? 'Leave' : 'Join'),
-                          ),
-                          // Add delete button for the admin
-                          if (isAdmin)
-                            ElevatedButton(
-                              onPressed: () {
-                                deleteGroup(groupData['groupId'], context);
-                              },
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.black,
+                    return GestureDetector(
+                        onTap: () {
+                          if (userJoined) {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => GroupDetailsScreen(
+                                    groupId: groupData["groupId"],
+                                  ),
+                                ));
+                          }
+                        },
+                        child: Container(
+                            margin: const EdgeInsets.only(bottom: 8.0),
+                            decoration: BoxDecoration(
+                              border: Border.all(
+                                  color: Colors
+                                      .black), // Add border to create a box
+                              borderRadius:
+                                  const BorderRadius.all(Radius.circular(0)),
+                              gradient: const LinearGradient(
+                                begin: Alignment.topLeft,
+                                end: Alignment.bottomRight,
+                                colors: [
+                                  Color.fromARGB(255, 152, 142, 225),
+                                  Color.fromARGB(255, 191, 189, 210)
+                                ],
                               ),
-                              child: Text('Delete'),
                             ),
-                        ],
-                      ),
-                    );
+                            child: ListTile(
+                              leading: const Icon(
+                                Icons
+                                    .group, // Specify the group icon you want to use
+                                color: Colors
+                                    .white, // Optionally set the icon color
+                              ),
+
+                              title: Text(
+                                groupData['groupName'],
+                                style: const TextStyle(
+                                  fontSize:
+                                      18.0, // Adjust the font size as needed
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+
+                              // Add a "Join" or "Joined" button based on the user's membership status
+                              trailing: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  ElevatedButton(
+                                    onPressed: () {
+                                      // Handle leaving the group here
+                                      if (userJoined) {
+                                        leaveGroup(
+                                            groupData['groupId'], context);
+                                      } else {
+                                        joinGroup(groupData['groupId']);
+                                      }
+                                    },
+                                    style: ElevatedButton.styleFrom(
+                                      backgroundColor: userJoined
+                                          ? Color.fromARGB(255, 250, 140, 132)
+                                          : Color.fromARGB(255, 194, 233, 201),
+                                    ),
+                                    child: Text(
+                                      userJoined ? 'Leave' : 'Join',
+                                      style:
+                                          const TextStyle(color: Colors.black),
+                                    ),
+                                  ),
+                                  // Add delete button for the admin
+                                  // Add delete button for the admin
+                                  if (isAdmin)
+                                    ElevatedButton(
+                                      onPressed: () {
+                                        // Handle deleting the group here
+                                        deleteGroup(
+                                            groupData['groupId'], context);
+                                      },
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor: Colors
+                                            .black, // Set button color to red
+                                      ),
+                                      child: Text('Delete'),
+                                    ),
+                                ],
+                              ),
+                            )));
                   },
                 );
               },

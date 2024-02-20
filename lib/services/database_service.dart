@@ -41,6 +41,7 @@ class DataBaseService {
       "groupId": "",
       "recentMessage": "",
       "recentMessageSender": "",
+      "hedefKalori": 0,
     });
     await groupDocumentReference.update({
       "members": FieldValue.arrayUnion(["${email}$userName"]),
@@ -52,15 +53,6 @@ class DataBaseService {
       "groups":
           FieldValue.arrayUnion(["${groupDocumentReference.id}_$groupName"])
     });
-  }
-
-  //getting the chats
-  getChats(String groupId) {
-    return groupCollection
-        .doc(groupId)
-        .collection("messages")
-        .orderBy("time")
-        .snapshots();
   }
 
   Future getGroupAdmin(String groupId) async {

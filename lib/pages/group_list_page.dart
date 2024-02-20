@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:social_wall/pages/challenge_option.dart';
 
 import 'package:social_wall/pages/search_page_group.dart';
 import 'package:social_wall/services/database_service.dart';
@@ -35,9 +36,6 @@ class _GroupListScreenState extends State<GroupListScreen> {
   bool isCurrentUserAdmin(Map<String, dynamic> groupData) {
     String adminEmail = groupData['admin'];
     String currentUserEmail = user?.email ?? 'User email is null';
-
-    print('Admin Email: $adminEmail');
-    print('Current User Email: $currentUserEmail');
 
     return adminEmail == currentUserEmail;
   }
@@ -95,7 +93,10 @@ class _GroupListScreenState extends State<GroupListScreen> {
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Theme.of(context).primaryColor,
                   ),
-                  child: const Text("CANCEL"),
+                  child: const Text(
+                    "CANCEL",
+                    style: TextStyle(color: Colors.grey),
+                  ),
                 ),
                 ElevatedButton(
                   onPressed: () async {
@@ -122,7 +123,10 @@ class _GroupListScreenState extends State<GroupListScreen> {
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Theme.of(context).primaryColor,
                   ),
-                  child: const Text("CREATE"),
+                  child: const Text(
+                    "CREATE",
+                    style: TextStyle(color: Colors.grey),
+                  ),
                 )
               ],
             );
@@ -132,11 +136,6 @@ class _GroupListScreenState extends State<GroupListScreen> {
 
   // Method to handle deleting the group
   void deleteGroup(String groupId, var groupData) async {
-    // Assuming you have a user authentication system
-    // Replace the following line with your actual user authentication logic
-    // FirebaseUser user = FirebaseAuth.instance.currentUser;
-
-    // Check if user is signed in
     if (user != null) {
       try {
         // Assuming 'groups' collection contains adminId field for each group
@@ -154,22 +153,11 @@ class _GroupListScreenState extends State<GroupListScreen> {
 
         // Refresh the UI
         setState(() {});
-      } catch (error) {
-        print('Error deleting group: $error');
-        // Handle error (show an error message, log the error, etc.)
-      }
-    } else {
-      // Handle the case when the user is not signed in
-      print('User not signed in. Cannot delete group.');
-    }
+      } catch (error) {}
+    } else {}
   }
 
   void leaveGroup(String groupId, BuildContext context) async {
-    // Assuming you have a user authentication system
-    // Replace the following line with your actual user authentication logic
-    // FirebaseUser user = FirebaseAuth.instance.currentUser;
-
-    // Check if user is signed in
     if (user != null) {
       try {
         // Get the current list of members
@@ -210,14 +198,8 @@ class _GroupListScreenState extends State<GroupListScreen> {
             content: Text('You are not a member of the group.'),
           ));
         }
-      } catch (error) {
-        print('Error leaving group: $error');
-        // Handle error (show an error message, log the error, etc.)
-      }
-    } else {
-      // Handle the case when the user is not signed in
-      print('User not signed in. Cannot leave group.');
-    }
+      } catch (error) {}
+    } else {}
   }
 
   void joinGroup(String groupId) async {
@@ -257,19 +239,9 @@ class _GroupListScreenState extends State<GroupListScreen> {
           setState(() {});
 
           // You can also navigate to a new screen or show a success message
-          print('Joined group with ID: $groupId');
-        } else {
-          // User is already a member
-          print('User is already a member of the group.');
-        }
-      } catch (error) {
-        print('Error joining group: $error');
-        // Handle error (show an error message, log the error, etc.)
-      }
-    } else {
-      // Handle the case when the user is not signed in
-      print('User not signed in. Cannot join group.');
-    }
+        } else {}
+      } catch (error) {}
+    } else {}
   }
 
   // Add a method to navigate to the SearchPage
@@ -333,53 +305,86 @@ class _GroupListScreenState extends State<GroupListScreen> {
               bool isAdmin = isCurrentUserAdmin(groupData);
               return GestureDetector(
                   onTap: () {
-                    // Navigator.push(
-                    //     context,
-                    //     MaterialPageRoute(
-                    //       builder: (context) => GroupDetailsScreen(
-                    //         groupId: groupData['groupId'],
-                    //       ),
-                    //     ));
-                  },
-                  child: ListTile(
-                    title: Text(groupData['groupName']),
-
-                    // Add a "Join" or "Joined" button based on the user's membership status
-                    trailing: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        ElevatedButton(
-                          onPressed: () {
-                            // Handle leaving the group here
-                            if (userJoined) {
-                              leaveGroup(groupData['groupId'], context);
-                            } else {
-                              joinGroup(groupData['groupId']);
-                            }
-                          },
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor:
-                                userJoined ? Colors.red : Colors.blue,
-                          ),
-                          child: Text(userJoined ? 'Leave' : 'Join'),
-                        ),
-                        // Add delete button for the admin
-                        // Add delete button for the admin
-                        if (isAdmin)
-                          ElevatedButton(
-                            onPressed: () {
-                              // Handle deleting the group here
-                              deleteGroup(groupData['groupId'], context);
-                            },
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor:
-                                  Colors.black, // Set button color to red
+                    if (userJoined) {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => GroupDetailsScreen(
+                              groupId: groupData["groupId"],
                             ),
-                            child: Text('Delete'),
+                          ));
+                    }
+                  },
+                  child: Container(
+                      margin: const EdgeInsets.only(bottom: 8.0),
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                            color: Colors.black), // Add border to create a box
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(0)),
+                        gradient: const LinearGradient(
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                          colors: [
+                            Color.fromARGB(255, 152, 142, 225),
+                            Color.fromARGB(255, 191, 189, 210)
+                          ],
+                        ),
+                      ),
+                      child: ListTile(
+                        leading: const Icon(
+                          Icons.group, // Specify the group icon you want to use
+                          color: Colors.white, // Optionally set the icon color
+                        ),
+
+                        title: Text(
+                          groupData['groupName'],
+                          style: const TextStyle(
+                            fontSize: 18.0, // Adjust the font size as needed
+                            fontWeight: FontWeight.bold,
                           ),
-                      ],
-                    ),
-                  ));
+                        ),
+
+                        // Add a "Join" or "Joined" button based on the user's membership status
+                        trailing: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            ElevatedButton(
+                              onPressed: () {
+                                // Handle leaving the group here
+                                if (userJoined) {
+                                  leaveGroup(groupData['groupId'], context);
+                                } else {
+                                  joinGroup(groupData['groupId']);
+                                }
+                              },
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: userJoined
+                                    ? Color.fromARGB(255, 250, 140, 132)
+                                    : Color.fromARGB(255, 194, 233, 201),
+                              ),
+                              child: Text(
+                                userJoined ? 'Leave' : 'Join',
+                                style: const TextStyle(color: Colors.black),
+                              ),
+                            ),
+                            // Add delete button for the admin
+                            // Add delete button for the admin
+                            if (isAdmin)
+                              ElevatedButton(
+                                onPressed: () {
+                                  // Handle deleting the group here
+                                  deleteGroup(groupData['groupId'], context);
+                                },
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor:
+                                      Colors.black, // Set button color to red
+                                ),
+                                child: Text('Delete'),
+                              ),
+                          ],
+                        ),
+                      )));
 
               // Add more widgets as needed based on your data model
             },
