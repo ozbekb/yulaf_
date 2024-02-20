@@ -1,7 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:social_wall/components/text_box.dart';
+import 'package:social_wall/widgets/expense_screen/expense_card.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -122,32 +125,27 @@ class _ProfilePageState extends State<ProfilePage> {
                 onPressed: () => editField('name'),
               ),
 
-              MyTextBox(
-                text: userData['heigth'],
-                sectionName: 'Heigth',
-                onPressed: () => editField('heigth'),
-              ),
               Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+                //mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.all(0),
+                  Expanded(
+                    //padding: const EdgeInsets.all(0),
                     child: MyTextBox(
                       text: userData['heigth'],
                       sectionName: 'Heigth',
                       onPressed: () => editField('heigth'),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(0),
+                  Expanded(
+                    // padding: const EdgeInsets.all(0),
                     child: MyTextBox(
                       text: userData['weigth'],
                       sectionName: 'Weigth',
                       onPressed: () => editField('weigth'),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(0),
+                  Expanded(
+                    //padding: const EdgeInsets.all(0),
                     child: MyTextBox(
                       text: userData['age'],
                       sectionName: 'Age',
@@ -165,7 +163,7 @@ class _ProfilePageState extends State<ProfilePage> {
               ),
 
               const SizedBox(
-                height: 50,
+                height: 30,
               ),
 
               //user posts

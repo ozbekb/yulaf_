@@ -93,7 +93,7 @@ class _GroupListScreenState extends State<GroupListScreen> {
                     Navigator.of(context).pop();
                   },
                   style: ElevatedButton.styleFrom(
-                    primary: Theme.of(context).primaryColor,
+                    backgroundColor: Theme.of(context).primaryColor,
                   ),
                   child: const Text("CANCEL"),
                 ),
@@ -120,7 +120,7 @@ class _GroupListScreenState extends State<GroupListScreen> {
                     }
                   },
                   style: ElevatedButton.styleFrom(
-                    primary: Theme.of(context).primaryColor,
+                    backgroundColor: Theme.of(context).primaryColor,
                   ),
                   child: const Text("CREATE"),
                 )
@@ -358,7 +358,8 @@ class _GroupListScreenState extends State<GroupListScreen> {
                             }
                           },
                           style: ElevatedButton.styleFrom(
-                            primary: userJoined ? Colors.red : Colors.blue,
+                            backgroundColor:
+                                userJoined ? Colors.red : Colors.blue,
                           ),
                           child: Text(userJoined ? 'Leave' : 'Join'),
                         ),
@@ -371,7 +372,8 @@ class _GroupListScreenState extends State<GroupListScreen> {
                               deleteGroup(groupData['groupId'], context);
                             },
                             style: ElevatedButton.styleFrom(
-                              primary: Colors.black, // Set button color to red
+                              backgroundColor:
+                                  Colors.black, // Set button color to red
                             ),
                             child: Text('Delete'),
                           ),

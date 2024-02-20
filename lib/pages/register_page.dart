@@ -128,7 +128,7 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.lime[300],
+      //backgroundColor: Colors.lime[300],
       body: SafeArea(
         child: Center(
           child: Padding(
@@ -181,7 +181,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             borderSide: BorderSide(color: Colors.black)),
                         focusedBorder: const OutlineInputBorder(
                             borderSide: BorderSide(color: Colors.black)),
-                        fillColor: Colors.lime.shade200,
+                        //fillColor: Colors.lime.shade200,
                         filled: true,
                         hintStyle: TextStyle(color: Colors.grey[500]),
                         hintText: "Gender",

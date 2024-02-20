@@ -20,23 +20,20 @@ class _LoginPageState extends State<LoginPage> {
 
   void signIn() async {
     //show loading circle
-    showDialog(context: context, builder: (context)=>const Center(
-      child: CircularProgressIndicator(),
-    ));
+    showDialog(
+        context: context,
+        builder: (context) => const Center(
+              child: CircularProgressIndicator(),
+            ));
 
-
-    try{
+    try {
       await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: emailTextController.text, password: passwordTextController.text);
+          email: emailTextController.text,
+          password: passwordTextController.text);
 
-
-         //pop loading circle
-    if(context.mounted) Navigator.pop(context);
-    }
-   
-    
-     on FirebaseAuthException catch(e){
-
+      //pop loading circle
+      if (context.mounted) Navigator.pop(context);
+    } on FirebaseAuthException catch (e) {
       //pop loading circle
       Navigator.pop(context);
       //display error message
@@ -44,18 +41,19 @@ class _LoginPageState extends State<LoginPage> {
     }
   }
 
-
   //display a dialog message
-  void displayMessage(String message){
-    showDialog(context: context, builder: (context)=>AlertDialog(
-      title: Text(message),
-    ));
+  void displayMessage(String message) {
+    showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+              title: Text(message),
+            ));
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.lime[300],
+      //backgroundColor: Colors.lime[300],
       body: SafeArea(
         child: Center(
           child: Padding(
