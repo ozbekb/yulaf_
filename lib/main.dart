@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:social_wall/auth/auth.dart';
 import 'package:provider/provider.dart';
 import 'package:social_wall/pages/challenge_option.dart';
+import 'package:social_wall/pages/group_list_page.dart';
 import './models/database_provider.dart';
 // screens
 import './screens/category_screen.dart';
@@ -59,6 +60,7 @@ class MyApp extends StatelessWidget {
           "calorie": (context) => CategoryScreen(),
           "dialog": (context) => DialogFlow(),
           "recipe": (context) => RecipeScreen(),
+          "challenge_option": (context) => GroupListScreen(),
           //ExpenseScreen.name: (_) => const ExpenseScreen(),
           //AllExpenses.name: (_) => const AllExpenses(),
         },

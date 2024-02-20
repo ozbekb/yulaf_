@@ -99,7 +99,10 @@ class UserCardCustom extends StatelessWidget {
                 ),
               ),
             ),
-            const CircleAvatar(),
+            const CircleAvatar(
+              backgroundColor: Colors.white,
+              child: Icon(Icons.chat),
+            ),
           ],
         ),
       ),

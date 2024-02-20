@@ -129,23 +129,40 @@ class _GroupDetailsScreenState extends State<GroupDetailsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('Group Details'),
+          title: const Text(
+            "CHALLENGE",
+            style: TextStyle(
+              color: Color.fromARGB(255, 152, 142, 225),
+              fontSize: 30,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
         ),
         body: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              const Text(
+                'Target Calories:',
+                style: TextStyle(
+                  fontSize: 20, // Adjust the font size as needed
+                  fontWeight: FontWeight.bold, // Add bold for emphasis
+                  // Change the color to a color of your choice
+                ),
+              ),
               Text(
-                'Hedef Kalori: $hedefKalori',
-                style: TextStyle(fontSize: 16),
+                '${hedefKalori} Cal',
+                style: TextStyle(
+                  fontSize: 20,
+                ),
               ),
               SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
                   showHedefKaloriDialog();
                 },
-                child: const Text('Change Hedef Kalori'),
+                child: const Text('Change Target Calories'),
               ),
               const SizedBox(height: 20),
               const Text(
@@ -207,13 +224,13 @@ class _GroupDetailsScreenState extends State<GroupDetailsScreen> {
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: Text('Change Hedef Kalori'),
+          title: Text('Change Target Calories'),
           content: TextField(
             keyboardType: TextInputType.number,
             onChanged: (value) {
               newHedefKalori = double.parse(value);
             },
-            decoration: InputDecoration(labelText: 'New Hedef Kalori'),
+            decoration: InputDecoration(labelText: 'New Target Calories'),
           ),
           actions: [
             TextButton(

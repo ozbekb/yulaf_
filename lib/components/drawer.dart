@@ -40,32 +40,32 @@ class MyDrawer extends StatelessWidget {
                   icon: Icons.person,
                   text: 'P R O F I L E',
                   onTap: onProfileTap),
-              MyListTile(
-                  icon: Icons.chat,
-                  text: 'CHALLENGE GROUPS',
-                  onTap: () {
-                    // Navigate to ChatPage when tapped
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) =>
-                            const GroupListScreen(), // You might need to pass user data to ChatPage
-                      ),
-                    );
-                  }),
-              MyListTile(
-                  icon: Icons.chat,
-                  text: 'FRIENDS',
-                  onTap: () {
-                    // Navigate to ChatPage when tapped
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) =>
-                            const FriendListScreen(), // You might need to pass user data to ChatPage
-                      ),
-                    );
-                  }),
+              // MyListTile(
+              //     icon: Icons.chat,
+              //     text: 'CHALLENGE GROUPS',
+              //     onTap: () {
+              //       // Navigate to ChatPage when tapped
+              //       Navigator.push(
+              //         context,
+              //         MaterialPageRoute(
+              //           builder: (context) =>
+              //               const GroupListScreen(), // You might need to pass user data to ChatPage
+              //         ),
+              //       );
+              //     }),
+              // MyListTile(
+              //     icon: Icons.chat,
+              //     text: 'FRIENDS',
+              //     onTap: () {
+              //       // Navigate to ChatPage when tapped
+              //       Navigator.push(
+              //         context,
+              //         MaterialPageRoute(
+              //           builder: (context) =>
+              //               const FriendListScreen(), // You might need to pass user data to ChatPage
+              //         ),
+              //       );
+              //     }),
             ],
           ),
 
