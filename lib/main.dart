@@ -25,10 +25,10 @@ void main() async {
 
   try {
     print("food çalışş");
-    final foodData = await EdamamAPI.fetchFoodData('1 large apple');
-    final foodDat2 = await EdamamAPI.fetchFoodData('almond milk');
-    final foodDat = EdamamAPI.parseFoodData(foodDat2);
-    print(foodDat);
+    //final foodData = await EdamamAPI.fetchFoodData('1 large apple');
+    //final foodDat2 = await EdamamAPI.fetchFoodData('almond milk');
+    //final foodDat = EdamamAPI.parseFoodData(foodDat2);
+    //print(foodDat);
   } catch (e) {
     print('Error fetching food data: $e');
   }

@@ -239,6 +239,11 @@ class DatabaseProvider with ChangeNotifier {
   }
 
   double calculateTotalExpenses() {
+    print("CALCULATE TOTAL");
+    for (ExpenseCategory e in _categories) {
+      print(e.title + e.totalAmount.toString());
+    }
+
     return _categories.fold(
         0.0, (previousValue, element) => previousValue + element.totalAmount);
   }
@@ -247,7 +252,7 @@ class DatabaseProvider with ChangeNotifier {
     List<Map<String, dynamic>> data = [];
 
     // we know that we need 7 entries
-    for (int i = 0; i < 7; i++) {
+    for (int i = 0; i < 4; i++) {
       // 1 total for each entry
       double total = 0.0;
       // subtract i from today to get previous dates.
