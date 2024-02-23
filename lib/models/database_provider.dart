@@ -10,7 +10,9 @@ class DatabaseProvider with ChangeNotifier {
   double totalProtein = 0.0;
   double totalcarb = 0.0;
   double totalfat = 0.0;
+  double totalCal = 0.0;
   String _searchText = '';
+
   String get searchText => _searchText;
   set searchText(String value) {
     _searchText = value;
@@ -241,7 +243,7 @@ class DatabaseProvider with ChangeNotifier {
   double calculateTotalExpenses() {
     print("CALCULATE TOTAL");
     for (ExpenseCategory e in _categories) {
-      print(e.title + e.totalAmount.toString());
+      //print(e.title + e.totalAmount.toString() + e.entries.toString());
     }
 
     return _categories.fold(
@@ -277,6 +279,10 @@ class DatabaseProvider with ChangeNotifier {
 
   Future<double> getProtein() async {
     double result = 0.0;
+    totalCal = 0.0;
+    totalcarb = 0.0;
+    totalfat = 0.0;
+
     var list = await fetchAllExpenses();
 
     // List to store the futures of fetching food data
@@ -291,8 +297,49 @@ class DatabaseProvider with ChangeNotifier {
         await Future.wait(foodDataFutures);
 
     for (Map<String, dynamic> foodData in foodDataList) {
-      final parsedFoodData = EdamamAPI.parseFoodData(foodData);
+      print("here");
+      for (Expense e in list) {
+        //print("foodDATA " + foodData.entries.elementAt(5).key);
+        print(e.title + " ****** " + foodData.entries.first.value.toString());
+        if (e.title == foodData.entries.first.value.toString()) {
+          double amount = 0.0;
+          amount = e.amount;
+          print("FORRRRR");
+
+          print(e.title + "  -------- " + e.amount.toString());
+          final parsedFoodData = EdamamAPI.parseFoodData(foodData);
+          result += double.parse(parsedFoodData["protein"].toString());
+          totalcarb += double.parse(parsedFoodData["carbs"].toString());
+          totalfat += double.parse(parsedFoodData["fat"].toString());
+          double size =
+              double.parse(parsedFoodData["servingSizeWeight"].toString());
+          double cal = double.parse(parsedFoodData["calories"].toString());
+          //Expense e = list.fi
+          //totalCal += ((amount / size) * cal);
+          print("REAL CAL ");
+          print((amount / size) * cal);
+          totalCal += ((amount / size) * cal);
+
+          //totalCal += double.parse(parsedFoodData["calories"].toString());
+
+          print("Size " + size.toString());
+          //break;
+        }
+      }
+      print("here2");
+
+      /*final parsedFoodData = EdamamAPI.parseFoodData(foodData);
       result += double.parse(parsedFoodData["protein"].toString());
+      totalcarb += double.parse(parsedFoodData["carbs"].toString());
+      totalfat += double.parse(parsedFoodData["fat"].toString());
+      double size =
+          double.parse(parsedFoodData["servingSizeWeight"].toString());
+      double cal = double.parse(parsedFoodData["calories"].toString());
+      //Expense e = list.fi
+
+      totalCal += double.parse(parsedFoodData["calories"].toString());
+
+      print("Size " + size.toString());*/
     }
 
     totalProtein = result;

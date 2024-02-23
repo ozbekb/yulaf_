@@ -36,7 +36,7 @@ class _HomeState extends State<MainPage> {
     return [
       Home(),
       HomePage(),
-      FriendListScreen(), //Feed(), // Pass the user object to the Feed widget
+      //FriendListScreen(), //Feed(), // Pass the user object to the Feed widget
       //CategoryScreen(), //Chat(),
       //Container(), //FeedbackScreen(),
       ProfilePage(),
@@ -75,7 +75,14 @@ class _HomeState extends State<MainPage> {
         actions: [
           //sign out button
 
-          IconButton(onPressed: signOut, icon: Icon(Icons.logout))
+          IconButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => FriendListScreen()),
+                );
+              },
+              icon: Icon(Icons.chat))
         ],
         //),
 
@@ -124,10 +131,6 @@ class _HomeState extends State<MainPage> {
                 GButton(
                   icon: Icons.feed,
                   text: 'Feed',
-                ),
-                GButton(
-                  icon: Icons.message,
-                  text: 'Chat',
                 ),
                 GButton(
                   icon: Icons.person,

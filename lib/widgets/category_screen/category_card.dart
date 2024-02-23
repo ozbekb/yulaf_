@@ -17,13 +17,14 @@ class CategoryCard extends StatelessWidget {
         );
       },
       leading: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(10.0),
         child: Icon(category.icon),
       ),
       title: Text(category.title),
       subtitle: Text('entries: ${category.entries}'),
-      trailing: Text(NumberFormat.currency(locale: 'ar_sa', symbol: 'Cal')
-          .format(category.totalAmount)),
+      //trailing: Text(NumberFormat.currency(locale: 'ar_sa', symbol: 'Cal')
+//.format(category.totalAmount)
+      //),
     );
   }
 }

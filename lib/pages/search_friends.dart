@@ -46,7 +46,7 @@ class _SearchFriendsScreenState extends State<SearchFriendsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFEAF2F4),
+      //backgroundColor: Color.fromARGB(70, 152, 142, 225),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(

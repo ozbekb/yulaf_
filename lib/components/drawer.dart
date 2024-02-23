@@ -36,10 +36,7 @@ class MyDrawer extends StatelessWidget {
               ),
 
               //profile list tile
-              MyListTile(
-                  icon: Icons.person,
-                  text: 'P R O F I L E',
-                  onTap: onProfileTap),
+
               // MyListTile(
               //     icon: Icons.chat,
               //     text: 'CHALLENGE GROUPS',

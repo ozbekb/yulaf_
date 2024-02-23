@@ -22,8 +22,8 @@ class _TotalChartState extends State<TotalChart> {
   void initState() {
     super.initState();
     _fetchProtein();
-    _fetchCarb();
-    _fetchFat();
+    // _fetchCarb();
+    //_fetchFat();
   }
 
   Future<void> _fetchProtein() async {
@@ -131,6 +131,7 @@ class _TotalChartState extends State<TotalChart> {
       print("total fat " + db.totalfat.toString());
 
       var total = db.calculateTotalExpenses();
+      var totalcal = db.totalCal;
       User? user = FirebaseAuth.instance.currentUser;
       String? email = user?.email;
       updateTotalForUser(email, total);
@@ -147,7 +148,7 @@ class _TotalChartState extends State<TotalChart> {
                   alignment: Alignment.center,
                   fit: BoxFit.scaleDown,
                   child: Text(
-                    'Total Calorie: ${NumberFormat.currency(locale: 'ar_sa', symbol: 'Cal').format(total)}',
+                    'Total Calorie: ${NumberFormat.currency(locale: 'ar_sa', symbol: 'Cal').format(totalcal)}',
                     textScaleFactor: 1.5,
                     style: const TextStyle(
                       fontWeight: FontWeight.bold,

@@ -59,7 +59,7 @@ class _RegisterPageState extends State<RegisterPage> {
           .doc(userCredential.user!.email)
           .set({
         'username': emailTextController.text.split('@')[0],
-        'nameSurname': nameTextController.text, //initial username
+        'nameSurname': nameTextController.text.toLowerCase(), //initial username
         'gender': genderCont,
         'heigth': heigthTextController.text,
         'weigth': weigthTextController.text,
@@ -184,6 +184,8 @@ class _RegisterPageState extends State<RegisterPage> {
                             borderSide: BorderSide(color: Colors.black)),
                         //fillColor: Colors.lime.shade200,
                         filled: true,
+                        fillColor: Color.fromARGB(70, 152, 142, 225),
+
                         hintStyle: TextStyle(color: Colors.grey[500]),
                         hintText: "Gender",
                       ),

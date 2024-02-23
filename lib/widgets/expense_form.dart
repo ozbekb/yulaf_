@@ -61,7 +61,7 @@ class _ExpenseFormState extends State<ExpenseForm> {
             TextField(
               controller: _title,
               decoration: const InputDecoration(
-                labelText: 'Title of expense',
+                labelText: 'Title of food',
               ),
             ),
             const SizedBox(height: 20.0),
@@ -70,7 +70,7 @@ class _ExpenseFormState extends State<ExpenseForm> {
               controller: _amount,
               keyboardType: TextInputType.number,
               decoration: const InputDecoration(
-                labelText: 'Amount of expense',
+                labelText: 'Amount of food (gr./ml.)',
               ),
             ),
             const SizedBox(height: 20.0),
@@ -163,6 +163,7 @@ class _ExpenseFormState extends State<ExpenseForm> {
             const SizedBox(height: 20.0),
             ElevatedButton.icon(
               onPressed: () {
+                setState(() {});
                 if (_title.text != '' && _amount.text != '') {
                   // create an expense
                   final file = Expense(

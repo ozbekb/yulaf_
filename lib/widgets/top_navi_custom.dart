@@ -23,7 +23,7 @@ class TopNavigationCustom extends StatelessWidget {
     return Container(
       height: 70.0,
       width: screenWidth,
-      color: isLight ? const Color(0xFF528C9E) : const Color(0xFF394949),
+      //color: isLight ? const Color(0xFF528C9E) : const Color(0xFF394949),
       child: Padding(
         padding: const EdgeInsets.all(15.0),
         child: Row(
@@ -35,7 +35,7 @@ class TopNavigationCustom extends StatelessWidget {
                 child: Icon(
                   leftIcon,
                   size: 30.0,
-                  color: const Color(0xFFEAEAEA),
+                  //color: const Color(0xFFEAEAEA),
                 ),
               ),
               onTap: () => Navigator.of(context).pop(),
@@ -45,7 +45,7 @@ class TopNavigationCustom extends StatelessWidget {
               style: TextStyle(
                 fontSize: isSmall ? 18 : 24,
                 fontWeight: isSmall ? FontWeight.w600 : FontWeight.bold,
-                color: const Color(0xFFEAEAEA),
+                //color: const Color(0xFFEAEAEA),
               ),
             ),
             GestureDetector(
@@ -55,7 +55,7 @@ class TopNavigationCustom extends StatelessWidget {
                 child: Icon(
                   rightIcon,
                   size: 30.0,
-                  color: const Color(0xFFEAEAEA),
+                  //color: const Color(0xFFEAEAEA),
                 ),
               ),
             ),

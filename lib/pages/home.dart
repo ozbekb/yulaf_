@@ -80,7 +80,7 @@ class Home extends StatelessWidget {
 
               // "https://images.unsplash.com/photo-1554284126-aa88f22d8b74?q=80&w=2494&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
               titleStyle: titleStyle,
-              title: "CHALLANGE",
+              title: "Challenge",
               route: "challenge_option",
               gradient1: const Color.fromARGB(255, 126, 58, 174),
               gradient2: const Color.fromARGB(255, 174, 58, 149),

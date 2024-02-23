@@ -155,9 +155,19 @@ class _WallPostState extends State<WallPost> {
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              LikeButton(isLiked: isLiked, onTap: toggleLike),
+              Column(
+                children: [
+                  LikeButton(isLiked: isLiked, onTap: toggleLike),
+                  Text(widget.likes.length.toString()),
+                ],
+              ),
               SizedBox(width: 10),
-              CommentButton(onTap: showCommentDialog),
+              Column(
+                children: [
+                  CommentButton(onTap: showCommentDialog),
+                  Text(""),
+                ],
+              ),
             ],
           ),
           StreamBuilder<QuerySnapshot>(
