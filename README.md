@@ -2,9 +2,7 @@
 
 This is the Yulaf -the Social Media App made with flutter and Dart.
 
-The Users can register and login.
-The Users can Post on the wall which will be visible to other logged in users.
-The other users can like and comment on the wall posts.
+Yulaf is your health social media platform for sharing progress, discovering delicious recipes, and motivating each other through challenges and celebrations. Track your goals, get expert advice, and join a supportive community cheering you on to a healthier, happier you.
 
 ## Demo
 
